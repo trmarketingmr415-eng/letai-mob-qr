@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Скачать Летай</title>
+</head>
+<body>
+  <h1 style="text-align:center">Перенаправляем…</h1>
+  <p style="text-align:center">
+    Если не произошло автоматического открытия магазина, выберите подходящую ссылку ниже:
+  </p>
+  <ul style="text-align:center;list-style:none;">
+    <li><a href="https://play.google.com/store/apps/details?id=lc.deck.tattelecom">Google Play</a></li>
+    <li><a href="https://apps.apple.com/ru/app/летай-2-0/id1574494891">App Store</a></li>
+    <li><a href="https://appgallery.huawei.ru/app/C105849211">AppGallery (Huawei)</a></li>
+  </ul>
+  <script>
+    var ua = navigator.userAgent || "";
+    // Проверяем устройство
+    if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+      window.location.href = "https://apps.apple.com/ru/app/летай-2-0/id1574494891";
+    } else if (/android/i.test(ua)) {
+      if (/huawei|honor/i.test(ua)) {
+        // Попытка открыть AppGallery через схему, затем fallback
+        window.location = "appmarket://details?id=C105849211";
+        setTimeout(function() {
+          window.location = "https://appgallery.huawei.ru/app/C105849211";
+        }, 1500);
+      } else {
+        // Попытка открыть Google Play через схему, затем fallback
+        window.location = "market://details?id=lc.deck.tattelecom";
+        setTimeout(function() {
+          window.location = "https://play.google.com/store/apps/details?id=lc.deck.tattelecom";
+        }, 1500);
+      }
+    }
+    // Десктоп — просто ссылки
+  </script>
+</body>
+</html>
